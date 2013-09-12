@@ -1,0 +1,35 @@
+<h2>Contact List</h2>
+<table>
+  <thead>
+    <tr>
+      <th>
+      Name
+      </th>
+      <th>
+      Phone Number
+      </th>
+      <th>
+        City
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @people.each do |person| %>
+    <tr>
+      <td><%= person.first_name %></td>
+      <td><%= person.phone %></td>
+      <td>
+        <% if person.address.nil? %>
+        N/A
+        <% else %>
+        <%= person.address.city %></td>
+        <% end %>
+      <td><%= link_to 'Edit', edit_person_path(person) %></td>
+      <td><%= link_to 'Show', person_path(person) %></td>
+      <td><%= link_to 'Destroy', person_path(person), method: :delete, data: { confirm: 'Are you sure?' } %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<%= link_to 'Create a New User', new_person_path %>
